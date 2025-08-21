@@ -5,7 +5,7 @@ import { WATCHES } from '../constants';
 import WatchCard from './WatchCard';
 import LoadingSpinner from './icons/LoadingSpinner';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 interface WatchDetailModalProps {
   watch: Watch | null;
@@ -48,52 +48,52 @@ const WatchDetailModal: React.FC<WatchDetailModalProps> = ({ watch, onClose, onS
     };
   }, []);
 
-  const findSimilarWatches = async () => {
-    if (!watch) return;
-    setIsFindingSimilar(true);
-    setFindError(null);
-    setSimilarWatches([]);
-    try {
-      const otherWatches = WATCHES.filter(w => w.id !== watch.id).map(
-        ({ id, brand, model, description, caseMaterial, strapMaterial, dialColor, price }) => 
-        ({ id, brand, model, description, caseMaterial, strapMaterial, dialColor, price })
-      );
+  // const findSimilarWatches = async () => {
+  //   if (!watch) return;
+  //   setIsFindingSimilar(true);
+  //   setFindError(null);
+  //   setSimilarWatches([]);
+  //   try {
+  //     const otherWatches = WATCHES.filter(w => w.id !== watch.id).map(
+  //       ({ id, brand, model, description, caseMaterial, strapMaterial, dialColor, price }) => 
+  //       ({ id, brand, model, description, caseMaterial, strapMaterial, dialColor, price })
+  //     );
       
-      const prompt = `Given the main watch: ${JSON.stringify({ brand: watch.brand, model: watch.model, description: watch.description, price: watch.price })}. And the following list of available watches: ${JSON.stringify(otherWatches)}. Identify the three most similar watches from the list based on style, brand, features, and price. Return only a JSON object.`;
+  //     const prompt = `Given the main watch: ${JSON.stringify({ brand: watch.brand, model: watch.model, description: watch.description, price: watch.price })}. And the following list of available watches: ${JSON.stringify(otherWatches)}. Identify the three most similar watches from the list based on style, brand, features, and price. Return only a JSON object.`;
 
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: prompt,
-        config: {
-          responseMimeType: 'application/json',
-          responseSchema: {
-            type: Type.OBJECT,
-            properties: {
-              similar_watch_ids: {
-                type: Type.ARRAY,
-                description: 'An array of three numbers, where each number is the ID of a similar watch.',
-                items: { type: Type.NUMBER }
-              }
-            }
-          }
-        }
-      });
+  //     const response = await ai.models.generateContent({
+  //       model: 'gemini-2.5-flash',
+  //       contents: prompt,
+  //       config: {
+  //         responseMimeType: 'application/json',
+  //         responseSchema: {
+  //           type: Type.OBJECT,
+  //           properties: {
+  //             similar_watch_ids: {
+  //               type: Type.ARRAY,
+  //               description: 'An array of three numbers, where each number is the ID of a similar watch.',
+  //               items: { type: Type.NUMBER }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
       
-      const resultJson = JSON.parse(response.text);
-      const similarIds = resultJson.similar_watch_ids;
+  //     const resultJson = JSON.parse(response.text);
+  //     const similarIds = resultJson.similar_watch_ids;
       
-      if (!similarIds || !Array.isArray(similarIds) || similarIds.length === 0) {
-        throw new Error('AI did not return valid watch IDs.');
-      }
-      const foundWatches = WATCHES.filter(w => similarIds.includes(w.id));
-      setSimilarWatches(foundWatches);
-    } catch (error) {
-      console.error('Error finding similar watches:', error);
-      setFindError('Sorry, we couldn\'t find similar watches at this time.');
-    } finally {
-      setIsFindingSimilar(false);
-    }
-  };
+  //     if (!similarIds || !Array.isArray(similarIds) || similarIds.length === 0) {
+  //       throw new Error('AI did not return valid watch IDs.');
+  //     }
+  //     const foundWatches = WATCHES.filter(w => similarIds.includes(w.id));
+  //     setSimilarWatches(foundWatches);
+  //   } catch (error) {
+  //     console.error('Error finding similar watches:', error);
+  //     setFindError('Sorry, we couldn\'t find similar watches at this time.');
+  //   } finally {
+  //     setIsFindingSimilar(false);
+  //   }
+  // };
 
   if (!watch) return null;
 
@@ -150,9 +150,9 @@ const WatchDetailModal: React.FC<WatchDetailModalProps> = ({ watch, onClose, onS
                 </div>
               </div>
               <div className="mt-auto pt-6 border-t border-slate-300/70 dark:border-zinc-700/70">
-                <button onClick={findSimilarWatches} disabled={isFindingSimilar} className="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cyan-700 hover:bg-cyan-800 dark:bg-amber-500 dark:hover:bg-amber-600 disabled:bg-slate-400 dark:disabled:bg-zinc-600 disabled:cursor-not-allowed transition-colors">
+                {/* <button onClick={findSimilarWatches} disabled={isFindingSimilar} className="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cyan-700 hover:bg-cyan-800 dark:bg-amber-500 dark:hover:bg-amber-600 disabled:bg-slate-400 dark:disabled:bg-zinc-600 disabled:cursor-not-allowed transition-colors">
                   {isFindingSimilar ? (<><LoadingSpinner className="w-5 h-5 mr-3" />Searching...</>) : 'Find Similar Watches'}
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
