@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clé du Temps - The Watch Collection</title>
+    <link rel="icon" type="image/png" href="/WatchCollection/assets/favlogo--R_rCdKQ.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // 1. Extend Tailwind's default theme with new fonts and set dark mode strategy.
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+          },
+        },
+      };
+
+      // 2. Set theme on initial load to prevent FOUC (Flash of Unstyled Content).
+      // This script runs before the body, checking localStorage first, then the OS.
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+    <style>
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+            transform: rotate(180deg) scale(1.1);
+        }
+        100% {
+          transform: rotate(360deg) scale(1);
+        }
+      }
+      .gradient-bg-ball {
+        position: absolute;
+        border-radius: 100%;
+        opacity: 0.3;
+        filter: blur(50px);
+        animation: rotate 30s infinite alternate;
+      }
+      .ball-1 {
+        width: 40vmax;
+        height: 40vmax;
+        top: -10%;
+        left: -10%;
+        background: #0891b2; /* cyan-600 */
+      }
+      .dark .ball-1 {
+        background: #f59e0b; /* amber-500 */
+      }
+      .ball-2 {
+        width: 50vmax;
+        height: 50vmax;
+        bottom: 0%;
+        right: -20%;
+        background: #f59e0b; /* amber-500 */
+        animation-duration: 40s;
+      }
+      .dark .ball-2 {
+        background: #0e7490; /* cyan-700 */
+      }
+      .ball-3 {
+        width: 30vmax;
+        height: 30vmax;
+        top: 40%;
+        right: -5%;
+        background: #be185d; /* pink-700 */
+        animation-duration: 35s;
+        animation-direction: reverse;
+      }
+      .dark .ball-3 {
+        background: #4f46e5; /* indigo-600 */
+      }
+      
+    </style>
+
+  <!-- <link rel="stylesheet" href="/index.css"> -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react/": "https://esm.sh/react@^19.1.1/",
+          "react": "https://esm.sh/react@^19.1.1",
+          "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
+          "@google/genai": "https://esm.sh/@google/genai?bundle"
+        }
+      }
+    </script>
+  <script type="module" crossorigin src="/WatchCollection/assets/index-ESiydMJ3.js"></script>
+</head>
+  <body  class="bg-white dark:bg-zinc-950 transition-colors duration-300">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
