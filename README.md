@@ -1,5 +1,6 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+   <h1>Clé du Temps - The Watch Collection</h1>
+   <img width="1200" height="475" alt="Banner" src="https://images8.alphacoders.com/366/thumb-1920-366212.jpg" />
 </div>
 
 ## Run Locally
@@ -7,15 +8,15 @@
 **Prerequisites:**  Node.js
 
 
-# Run and deploy Watch Collection Website
+## Run and deploy Watch Collection Website
 
 This contains everything you need to run web app locally.
 
 1. Install dependencies:
    1. `npm install`
-   2. `npm install three @types/three @react-three/fiber`
-   3. `npm install @react-three/fiber@alpha`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key (optional)
+   2. `npm install three @types/three @react-three/fiber` _(Not needed)_
+   3. `npm install @react-three/fiber@alpha` _(Not needed)_
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key _(optional)_
 3. Run the app:
    `npm run dev`
 
