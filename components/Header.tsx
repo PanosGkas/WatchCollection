@@ -9,7 +9,7 @@ const Header: React.FC = () => {
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-cyan-800 dark:text-amber-400 font-serif">
             Clé du Temps
           </h1>
-          <img src={"WatchCollection/images/logo1size.png"} width={"50px"} height={"50px"} className="filter hue-rotate-180 contrast-100 drop-shadow-xl dark:filter-none dark:drop-shadow-xl dark:contrast-100 "/>
+          <img src={"/images/logo1size.png"} width={"50px"} height={"50px"} className="filter hue-rotate-180 contrast-100 drop-shadow-xl dark:filter-none dark:drop-shadow-xl dark:contrast-100 "/>
         </div>
         <ThemeToggle />
       </div>
