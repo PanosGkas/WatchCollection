@@ -1,6 +1,6 @@
 <div align="center">
    <h1>Clé du Temps - The Watch Collection</h1>
-   <img width="1200" height="475" alt="Banner" src="images//readme_background.png" />
+   <img width="1200" height="475" alt="Banner" src="public//images//readme_background.png" />
 </div>
 
 ## Run Locally
